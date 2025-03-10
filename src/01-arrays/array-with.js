@@ -1,6 +1,6 @@
 
 
-const superHeroes = [
+const state = [
     {
         id: 1, 
         name: 'Batman'
@@ -19,13 +19,24 @@ const superHeroes = [
     },
 ];
 
-//si esto fuera con primitivos va perfecto pero con objetos falla
-//falla por el operador spread pero falla
-// const superHeroesCopy = [...superHeroes]; 
+const index = 1; 
+const newName = 'Green Lantern';
 
-const superHeroesCopy = structuredClone(superHeroes); 
-superHeroesCopy[0].name = 'Ironman'; 
+// const newState = state.map((hero, i) => {
+//     if (i === index) {
+//         hero.name = newName;
+//     }
+//     return {...hero}; 
+// }); 
 
+//cambia el elemento en el indice por el valor seleccionado
+const newState = state.with(index, {
+    ...state.at(index),     //para mantener un valor
+    name: newName
+});
 
-console.table(superHeroes);
-console.table(superHeroesCopy); 
+state[0].name = 'Volcan Negro'; 
+console.table(newState)
+
+console.log('\n\nEl ultimo indice: ', state.at(-1)); //at(-1) es la ultima (-2) penultima...
+
